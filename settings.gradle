@@ -1,0 +1,2 @@
+rootProject.name = "Calm App"
+include ':app'
