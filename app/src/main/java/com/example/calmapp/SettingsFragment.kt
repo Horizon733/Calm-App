@@ -16,6 +16,7 @@ import android.view.ViewGroup
 import android.widget.CompoundButton
 import android.widget.Switch
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.NotificationCompat
@@ -28,16 +29,11 @@ import kotlin.coroutines.coroutineContext
  * Use the [SettingsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SettingsFragment : Fragment() {
+class SettingsFragment : AppCompatActivity() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_settings, container, false) .apply{
         val switch = findViewById<SwitchCompat>(R.id.switch_dark_mode)
         val isNightTheme = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         switch.isChecked =  when(isNightTheme){
@@ -50,6 +46,7 @@ class SettingsFragment : Fragment() {
 
     }
 
+
     fun darkModeToggler(isNightTheme: Int){
             val desc: String;
 
@@ -58,18 +55,22 @@ class SettingsFragment : Fragment() {
 
             Configuration.UI_MODE_NIGHT_YES -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                activity?.overridePendingTransition(0, 0)
-                activity?.overridePendingTransition(0, 0)
+                overridePendingTransition(0, 0)
+                overridePendingTransition(0, 0)
                 desc = "Dark Mode Disabled!"
+                finish()
+                startActivity(Intent(this, SettingsFragment::class.java))
             }
             else -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                activity?.overridePendingTransition(0, 0)
-                activity?.overridePendingTransition(0, 0)
+                overridePendingTransition(0, 0)
+                overridePendingTransition(0, 0)
                 desc = "Dark Mode Enabled!"
             }
         }
-        Toast.makeText(context, desc, Toast.LENGTH_SHORT).show()
+        finish()
+        startActivity(Intent(this, SettingsFragment::class.java))
+        Toast.makeText(this, desc, Toast.LENGTH_SHORT).show()
 
 
     }
