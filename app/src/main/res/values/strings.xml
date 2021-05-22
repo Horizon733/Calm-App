@@ -10,7 +10,7 @@
     <!--    <string name="signup_description">Sign up with one of the following options.</string>-->
     <string name="signup_description">Sign up with:</string>
     <string name="login_description">Log in with:</string>
-<!--    <string name="login_description">Log in with one of the following options.</string>-->
+    <!--    <string name="login_description">Log in with one of the following options.</string>-->
     <string name="have_account">Already have an account?</string>
     <string name="email_hint">example@example.com</string>
     <string name="password_hint">8+ characters, 1 capital</string>
@@ -19,4 +19,6 @@
     <string name="sign_up_username_input_hint">Username</string>
     <string name="sign_up_email_input_hint">Email</string>
     <string name="sign_up_password_input_hint">Password</string>
+    <string name="meditation">meditation</string>
+    <string name="sleep">sleep</string>
 </resources>
