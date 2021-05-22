@@ -8,6 +8,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.beginTransaction().add(R.id.welcome_screen_container,WelcomeScreen(),"Home").commit()
+//        supportFragmentManager.beginTransaction().add(R.id.welcome_screen_container,WelcomeScreen(),"Home").commit()
+//        supportFragmentManager.beginTransaction().add(R.id.welcome_screen_container,SignUpFragment(),"Home").commit()
+        supportFragmentManager.beginTransaction().add(R.id.welcome_screen_container,LoginFragment(),"Home").commit()
     }
 }
