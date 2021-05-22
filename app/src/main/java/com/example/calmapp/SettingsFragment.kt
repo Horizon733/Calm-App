@@ -29,7 +29,7 @@ import kotlin.coroutines.coroutineContext
  * create an instance of this fragment.
  */
 class SettingsFragment : Fragment() {
-
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
