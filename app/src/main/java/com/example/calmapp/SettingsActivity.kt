@@ -29,10 +29,12 @@ import kotlin.coroutines.coroutineContext
  * Use the [SettingsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SettingsFragment : AppCompatActivity() {
+class SettingsActivity : AppCompatActivity() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_settings)
+
 
         val switch = findViewById<SwitchCompat>(R.id.switch_dark_mode)
         val isNightTheme = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
@@ -58,8 +60,6 @@ class SettingsFragment : AppCompatActivity() {
                 overridePendingTransition(0, 0)
                 overridePendingTransition(0, 0)
                 desc = "Dark Mode Disabled!"
-                finish()
-                startActivity(Intent(this, SettingsFragment::class.java))
             }
             else -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -69,7 +69,7 @@ class SettingsFragment : AppCompatActivity() {
             }
         }
         finish()
-        startActivity(Intent(this, SettingsFragment::class.java))
+        startActivity(Intent(this, SettingsActivity::class.java))
         Toast.makeText(this, desc, Toast.LENGTH_SHORT).show()
 
 

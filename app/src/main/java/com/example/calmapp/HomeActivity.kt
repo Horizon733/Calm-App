@@ -1,5 +1,6 @@
 package com.example.calmapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -37,7 +38,7 @@ class HomeActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction().replace(homeBinding.homeContainer.id,CalendarFragment(),"Calendar").commit()
         }
         homeBinding.settingsFab.setOnClickListener {
-            supportFragmentManager.beginTransaction().replace(homeBinding.homeContainer.id,SettingsFragment(),"Settings").commit()
+            startActivity(Intent(applicationContext,SettingsActivity::class.java))
         }
     }
 
