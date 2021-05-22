@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bell">#1F232A</color>
+    <color name="text_color">#FECDA0</color>
+    <color name="red">#FF7C6D</color>
+    <color name="green">#9CFF91</color>
+    <color name="gray">#F2F4F6</color>
+    <color name="bell">#fff</color>
 </resources>

@@ -2,6 +2,9 @@
     <string name="app_name">Calm App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="greeting_good_morning">Good Morning</string>
+    <string name="greeting_quote">We wish you have a good day</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="back_image">Back Image</string>
     <string name="settings">Settings</string>
     <string name="general">general</string>
