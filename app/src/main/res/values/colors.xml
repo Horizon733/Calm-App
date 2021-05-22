@@ -7,14 +7,12 @@
     <color name="orange_700">#FECDA0</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="light_green">#9CFF91</color>
-    <color name="light_red">#FF7C6D</color>
-    <color name="light_gray">#F2F4F6</color>
-    <color name="dark_gray">#31353B</color>
-    <color name="dark_green">#309030</color>
-    <color name="dark_red">#FF0000</color>
-    <color name="text_color_dark">#1F232A</color>
-    <color name="text_color_light">#FECDA0</color>
+
+    <color name="gray">#31353B</color>
+    <color name="green">#309030</color>
+    <color name="red">#FF0000</color>
+    <color name="text_color">#1F232A</color>
     <color name="grid_bg">#31353B</color>
-    <color name="bell">#fff</color>
+    <color name="bell">#1F232A</color>
+    <color name="orange">#F59034</color>
 </resources>
