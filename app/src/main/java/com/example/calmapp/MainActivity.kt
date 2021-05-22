@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val fragment = findViewById<FrameLayout>(R.id.fragment)
-        supportFragmentManager.beginTransaction().add(fragment.id,SettingsFragment(),"Settings").commit()
+        supportFragmentManager.beginTransaction().replace(fragment.id,SettingsFragment(),"Settings").commit()
 
 
     }

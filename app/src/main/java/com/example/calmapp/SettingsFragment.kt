@@ -1,12 +1,27 @@
 package com.example.calmapp
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Context.NOTIFICATION_SERVICE
+import android.content.Intent
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
+import android.widget.Switch
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.SwitchCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.fragment.app.Fragment
+import kotlin.coroutines.coroutineContext
 
 /**
  * A simple [Fragment] subclass.
@@ -22,30 +37,42 @@ class SettingsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View? = inflater.inflate(R.layout.fragment_settings, container, false) .apply{
+        val switch = findViewById<SwitchCompat>(R.id.switch_dark_mode)
+        val isNightTheme = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        switch.isChecked =  when(isNightTheme){
+            Configuration.UI_MODE_NIGHT_YES -> true
+            else -> false
+        }
+        switch.setOnCheckedChangeListener { _, checked ->
+            darkModeToggler(isNightTheme)
+        }
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
-    fun darkModeToggler(){
-        val isNightTheme = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+    fun darkModeToggler(isNightTheme: Int){
+            val desc: String;
+
+
         when (isNightTheme) {
+
             Configuration.UI_MODE_NIGHT_YES -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                activity?.finish()
                 activity?.overridePendingTransition(0, 0)
-//                startActivity(intent)
                 activity?.overridePendingTransition(0, 0)
+                desc = "Dark Mode Disabled!"
             }
-            Configuration.UI_MODE_NIGHT_NO -> {
+            else -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                activity?.finish()
                 activity?.overridePendingTransition(0, 0)
-//                startActivity(intent)
                 activity?.overridePendingTransition(0, 0)
+                desc = "Dark Mode Enabled!"
             }
-
         }
+        Toast.makeText(context, desc, Toast.LENGTH_SHORT).show()
+
+
     }
+
+
 }

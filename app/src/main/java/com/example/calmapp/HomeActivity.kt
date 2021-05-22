@@ -26,7 +26,7 @@ class HomeActivity : AppCompatActivity() {
             .into(homeBinding.profileImg)
         homeBinding.profileName.setText("Hiten Chawda")
 
-        supportFragmentManager.beginTransaction().add(homeBinding.homeContainer.id,HomeFragment(),"Home").commit()
+        supportFragmentManager.beginTransaction().replace(homeBinding.homeContainer.id,HomeFragment(),"Home").commit()
         homeBinding.moreFab.setOnClickListener {
             onMenuButtonClicked()
         }
