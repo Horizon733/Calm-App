@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.calmapp">
-<uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,24 +11,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CalmApp">
-        <activity android:name=".HomeActivity"
-            android:theme="@style/Theme.Home">
+        <activity android:name=".UserProfileActivity"
+            android:parentActivityName=".HomeActivity"
+            android:label="Update Profile"></activity>
+        <activity
+            android:name=".HomeActivity"
+            android:theme="@style/Theme.Home"></activity>
+        <activity android:name=".CalenderActivity"></activity>
+
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".SettingsActivity"
-            android:parentActivityName=".HomeActivity"
+        <activity
+            android:name=".SettingsActivity"
             android:label="Settings"
-
-            android:theme="@style/Theme.CalmApp">
-
-        </activity>
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/Theme.CalmApp"></activity>
     </application>
 
 </manifest>

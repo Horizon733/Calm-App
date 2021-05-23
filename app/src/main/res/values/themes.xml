@@ -45,6 +45,65 @@
 
     </style>
 
+    <style name="ShapeAppearanceOverlay.MyApp.Button.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 
+    <style name="user_profile_input_field">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColorHint">@color/gray</item>
+    </style>
+
+    <style name="background">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="login_signup_title">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+
+    <style name="login_signup_description">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="have_account_title">
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="signup_login_redirect" parent="@style/have_account_title">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="register_input_field">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:textColorLink">@color/gray</item>
+    </style>
+
+    <style name="sign_up_input_hint">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+    </style>
+
+    <style name="sign_up_login_button">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text_color</item>
+<!--        <item name="android:textStyle">bold</item>-->
+        <item name="textAllCaps">false</item>
+    </style>
 
 </resources>

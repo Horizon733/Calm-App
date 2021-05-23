@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "753236531536",
+    "project_id": "calm-app-7540a",
+    "storage_bucket": "calm-app-7540a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:753236531536:android:1d818accfb76c68156f455",
+        "android_client_info": {
+          "package_name": "com.example.calmapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "753236531536-4lio4sqkhs1c98g3hv3sp9nn5nvoa5u2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.calmapp",
+            "certificate_hash": "2f98e6c934b2adb8c7079b89a1026e65d8f5445b"
+          }
+        },
+        {
+          "client_id": "753236531536-v1ga5i8galp53o1v79r149k91ea1052v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbtdJCydjLbCWePQE51207Y54G8pIc_U0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "753236531536-v1ga5i8galp53o1v79r149k91ea1052v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
