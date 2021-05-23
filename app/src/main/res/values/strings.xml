@@ -12,4 +12,10 @@
     <string name="dark_mode">Dark Mode</string>
     <string name="sleep_reminder">Sleep Reminder</string>
     <string name="meditation_reminder">Meditation Reminder</string>
+    <string name="username">username</string>
+    <string name="name">Name</string>
+    <string name="age">age</string>
+    <string name="dob">Date of Birth</string>
+    <string name="save">Save</string>
+    <string name="close">Close and Reset</string>
 </resources>
