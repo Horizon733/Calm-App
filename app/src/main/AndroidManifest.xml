@@ -20,7 +20,7 @@
         <activity android:name=".MainActivity">
 
         </activity>
-        <activity android:name=".SettingsActivity">
+        <activity android:name=".SettingsActivity" android:parentActivityName=".HomeActivity" android:label="Settings" android:icon="@drawable/ic_baseline_arrow_back_24">
 
         </activity>
     </application>
