@@ -14,6 +14,8 @@ import com.example.calmapp.databinding.FragmentSignUpBinding
 import com.google.android.gms.common.internal.Objects
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class SignUpFragment : Fragment() {
     private lateinit var fragmentSignUpBinding: FragmentSignUpBinding
@@ -36,8 +38,16 @@ class SignUpFragment : Fragment() {
             val password = fragmentSignUpBinding.signUpPasswordField.text.toString()
 
             formValidation(username,email,password)
-            registerUser(email,password)
+            registerUser(username,email,password)
 //            Toast.makeText(context,email,Toast.LENGTH_SHORT).show()
+        })
+
+        fragmentSignUpBinding.singUpBackButton.setOnClickListener(View.OnClickListener {
+            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.welcome_screen_container,WelcomeScreen()).commit()
+        })
+
+        fragmentSignUpBinding.signUpLogInBtn.setOnClickListener(View.OnClickListener {
+            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.welcome_screen_container,LoginFragment()).commit()
         })
 
         return view
@@ -62,15 +72,23 @@ class SignUpFragment : Fragment() {
 
     }
 
-    private fun registerUser(email: String,password: String){
+    private fun registerUser(userName: String,email: String,password: String){
         val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(
             OnCompleteListener {
                 if(it.isSuccessful){
                     Toast.makeText(context,"Sign Up Successfully!",Toast.LENGTH_SHORT).show()
+                    storeInDB(userName)
                 }else{
                     Toast.makeText(context,"failed! ${it.exception.toString()}",Toast.LENGTH_SHORT).show()
                 }
             })
+    }
+
+    private fun storeInDB(userName: String){
+        val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
+        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+        val myRef: DatabaseReference = database.getReference("Users")
+        myRef.child(mAuth.currentUser?.uid.toString()).child("username").setValue(userName)
     }
 }

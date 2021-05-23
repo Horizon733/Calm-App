@@ -1,6 +1,6 @@
 package com.example.calmapp
 
-import android.content.res.Configuration
+import android.content.Intent
 import android.media.Image
 import android.os.Bundle
 import android.text.TextUtils
@@ -12,6 +12,8 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.calmapp.databinding.FragmentLoginBinding
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.FirebaseAuth
 
 
 class LoginFragment : Fragment() {
@@ -30,12 +32,19 @@ class LoginFragment : Fragment() {
 
         fragmentLoginBinding = FragmentLoginBinding.bind(view)
 
-        fragmentLoginBinding.loginPasswordField.setOnClickListener(View.OnClickListener {
+        fragmentLoginBinding.loginButton.setOnClickListener(View.OnClickListener {
             val email = fragmentLoginBinding.loginEmailField.text.toString()
             val password = fragmentLoginBinding.loginPasswordField.text.toString()
-            formValidation(email,password)
+            verifyingUser(email,password)
         })
 
+        fragmentLoginBinding.loginBackButton.setOnClickListener(View.OnClickListener {
+            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.welcome_screen_container,WelcomeScreen()).commit()
+        })
+
+        fragmentLoginBinding.loginSignUpButton.setOnClickListener(View.OnClickListener {
+            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.welcome_screen_container,SignUpFragment()).commit()
+        })
 
 
         val darkMode: ImageView = view.findViewById(R.id.login_light_mode_button)
@@ -59,16 +68,27 @@ class LoginFragment : Fragment() {
         return view
     }
 
-    private fun formValidation(email:String,password:String){
+    private fun verifyingUser(email:String,password:String){
         if(TextUtils.isEmpty(email)){
             fragmentLoginBinding.loginEmailField.error = "Enter email"
             return
         }
 
-        if(TextUtils.isEmpty(password)){
+        if(TextUtils.isEmpty(password) || password.length < 8 ){
             fragmentLoginBinding.loginPasswordField.error = "Enter Valid Password"
             return
         }
+
+        val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
+        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(OnCompleteListener {
+            if(it.isSuccessful){
+                Toast.makeText(context,"Login Successful",Toast.LENGTH_SHORT).show()
+                SessionManager(context).createLoginSession(mAuth.currentUser?.uid.toString(), fragmentLoginBinding.loginLightModeButton.isSelected)
+                startActivity(Intent(context,HomeActivity::class.java))
+            }else{
+                Toast.makeText(context,it.exception.toString(),Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
 

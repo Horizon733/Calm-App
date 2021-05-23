@@ -1,6 +1,7 @@
 package com.example.calmapp
 
 import android.app.Activity
+import android.app.Application
 import android.os.Bundle
 import android.os.strictmode.WebViewMethodCalledOnWrongThreadViolation
 import androidx.fragment.app.Fragment
@@ -8,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 
 class WelcomeScreen : Fragment() {
@@ -26,8 +29,12 @@ class WelcomeScreen : Fragment() {
 
         val goToLogin: Button = view.findViewById(R.id.go_to_login_button)
         goToLogin.setOnClickListener(View.OnClickListener {
-//            val fragmentManager
-//            supportFragmentManager.beginTransaction().replace(R.id.welcome_screen_container,WelcomeScreen(),"Home").commit()
+            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.welcome_screen_container,LoginFragment()).commit()
+        })
+
+        val goToSignUp: TextView = view.findViewById(R.id.welcome_page_signup)
+        goToSignUp.setOnClickListener(View.OnClickListener {
+            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.welcome_screen_container,SignUpFragment()).commit()
         })
 
         return view
