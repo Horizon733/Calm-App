@@ -1,5 +1,6 @@
 package com.example.calmapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.text.TextUtils
@@ -38,7 +39,6 @@ class SignUpFragment : Fragment() {
             val password = fragmentSignUpBinding.signUpPasswordField.text.toString()
 
             formValidation(username,email,password)
-            registerUser(username,email,password)
 //            Toast.makeText(context,email,Toast.LENGTH_SHORT).show()
         })
 
@@ -70,19 +70,18 @@ class SignUpFragment : Fragment() {
             return
         }
 
-    }
-
-    private fun registerUser(userName: String,email: String,password: String){
         val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(
             OnCompleteListener {
                 if(it.isSuccessful){
                     Toast.makeText(context,"Sign Up Successfully!",Toast.LENGTH_SHORT).show()
                     storeInDB(userName)
+                    startActivity(Intent(context,UserProfileActivity::class.java))
                 }else{
                     Toast.makeText(context,"failed! ${it.exception.toString()}",Toast.LENGTH_SHORT).show()
                 }
             })
+
     }
 
     private fun storeInDB(userName: String){

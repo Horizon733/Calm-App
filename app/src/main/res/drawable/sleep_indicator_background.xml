@@ -10,7 +10,7 @@
     </item>
     <item android:gravity="center" android:left="70dp">
         <shape android:shape="oval">
-            <solid android:color="@color/dark_green"/>
+            <solid android:color="@color/green"/>
             <size android:height="10dp" android:width="10dp"/>
         </shape>
     </item>

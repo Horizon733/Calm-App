@@ -15,7 +15,7 @@
     </style>
 
     <style name="background">
-        <item name="android:background">@color/text_color_dark</item>
+        <item name="android:background">#31353B</item>
     </style>
 
     <style name="login_signup_title">
@@ -46,7 +46,7 @@
         <item name="android:textColorHint">#99FFFFFF</item>
         <item name="android:layout_marginLeft">16dp</item>
         <item name="android:layout_marginRight">16dp</item>
-        <item name="android:textColorLink">@color/light_gray</item>
+        <item name="android:textColorLink">@color/gray</item>
     </style>
 
     <style name="sign_up_input_hint">
@@ -57,7 +57,7 @@
 
     <style name="sign_up_login_button">
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/text_color_dark</item>
+        <item name="android:textColor">@color/text_color</item>
         <!--        <item name="android:textStyle">bold</item>-->
         <item name="textAllCaps">false</item>
     </style>
