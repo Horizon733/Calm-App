@@ -64,9 +64,9 @@ class UserProfileActivity : AppCompatActivity() {
         myRef.addListenerForSingleValueEvent(object : EventListener,
             com.google.firebase.database.ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                val userName: String = snapshot.child("username").value.toString()
+                userProfileBinding.usernameTv.text = userName
                 if(snapshot.child("age").exists()){
-                    val userName: String = snapshot.child("username").value.toString()
-                    userProfileBinding.usernameTv.text = userName
                     val age: String = snapshot.child("age").value.toString()
                     val dob: String = snapshot.child("name").value.toString()
                     userProfileBinding.usernameEt.setText(userName)
