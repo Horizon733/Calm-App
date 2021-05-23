@@ -12,7 +12,8 @@
     <color name="green">#309030</color>
     <color name="red">#FF0000</color>
     <color name="text_color">#1F232A</color>
-    <color name="grid_bg">#31353B</color>
     <color name="bell">#1F232A</color>
     <color name="orange">#F59034</color>
+    <color name="song_list_bg_gray">#F8EBE8</color>
+    <color name="song_list_text_color">#402929</color>
 </resources>

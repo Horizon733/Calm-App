@@ -2,34 +2,44 @@ package com.example.calmapp
 
 
 import android.graphics.Color
-import android.graphics.LinearGradient
-import android.graphics.Shader
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.calmapp.databinding.FragmentHomeBinding
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.components.YAxis.AxisDependency
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
-import com.github.mikephil.charting.utils.ColorTemplate
+import okhttp3.OkHttpClient
+import org.json.JSONArray
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class HomeFragment : Fragment(), OnChartValueSelectedListener {
 
     private lateinit var homeFragmentBinding: FragmentHomeBinding
+    private lateinit var itemList: ArrayList<SongsFeed.Feed>
+    private lateinit var  songsListAdapter:SongsListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         homeFragmentBinding = FragmentHomeBinding.inflate(layoutInflater)
         homeFragmentBinding.dailyProgress.setOnChartValueSelectedListener(this)
+        itemList = ArrayList<SongsFeed.Feed>()
+
     }
 
     override fun onCreateView(
@@ -37,42 +47,31 @@ class HomeFragment : Fragment(), OnChartValueSelectedListener {
         savedInstanceState: Bundle?
     ): View? {
 
+        getAllsongs()
+//        Log.e("song title", itemList[0].title)
 
 
-        // no description text
-
-        // no description text
         homeFragmentBinding.dailyProgress.getDescription().setEnabled(false)
 
-        // enable touch gestures
-
-        // enable touch gestures
         homeFragmentBinding.dailyProgress.setTouchEnabled(true)
 
         homeFragmentBinding.dailyProgress.setDragDecelerationFrictionCoef(0.9f)
 
-        // enable scaling and dragging
-
-        // enable scaling and dragging
         homeFragmentBinding.dailyProgress.setDragEnabled(true)
         homeFragmentBinding.dailyProgress.setScaleEnabled(true)
         homeFragmentBinding.dailyProgress.setDrawGridBackground(false)
         homeFragmentBinding.dailyProgress.setHighlightPerDragEnabled(false)
 
-        // if disabled, scaling can be done on x- and y-axis separately
-
-        // if disabled, scaling can be done on x- and y-axis separately
         homeFragmentBinding.dailyProgress.setPinchZoom(true)
 
-
         homeFragmentBinding.dailyProgress.animateX(1500)
-
 
         homeFragmentBinding.dailyProgress.xAxis.isEnabled = false
         homeFragmentBinding.dailyProgress.axisRight.isEnabled=false
         homeFragmentBinding.dailyProgress.axisLeft.isEnabled = false
 
         setData(10,100F)
+
 
         return homeFragmentBinding.root
     }
@@ -132,6 +131,44 @@ class HomeFragment : Fragment(), OnChartValueSelectedListener {
 
     override fun onNothingSelected() {
 
+    }
+
+    fun getAllsongs(){
+        val url = "https://api.rss2json.com/v1/"
+        val okHttpClient = OkHttpClient()
+        val retrofit = Retrofit
+            .Builder()
+            .baseUrl(url)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val feedFetcher = retrofit.create(FeedFetcher::class.java)
+        val response = feedFetcher.feedFetecher("https://www.youtube.com/feeds/videos.xml?channel_id=UCb_kshGodseYhLPcDtxWv5w")
+        response.enqueue(object : Callback<SongsFeed>{
+            override fun onResponse(
+                call: Call<SongsFeed>,
+                response: Response<SongsFeed>
+            ) {
+                Log.e("respomse","${response}")
+                if(response.body()!=null){
+                    val items = response.body()
+                    if (items != null) {
+                        itemList = items.items
+                        songsListAdapter = SongsListAdapter(context!!,itemList)
+                        homeFragmentBinding.songsList.adapter = songsListAdapter
+
+                        val linearLayoutManager = LinearLayoutManager(context)
+                        linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+                        homeFragmentBinding.songsList.layoutManager = linearLayoutManager
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<SongsFeed>, t: Throwable) {
+               Log.e("error while fetching","${t.message}")
+            }
+
+        })
     }
 
 }
