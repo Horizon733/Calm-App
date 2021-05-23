@@ -37,7 +37,7 @@ class HomeActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction().replace(homeBinding.homeContainer.id,CalendarFragment(),"Calendar").commit()
         }
         homeBinding.settingsFab.setOnClickListener {
-            supportFragmentManager.beginTransaction().replace(homeBinding.homeContainer.id,SettingsFragment(),"Settings").commit()
+//            supportFragmentManager.beginTransaction().replace(homeBinding.homeContainer.id,SettingsFragment(),"Settings").commit()
         }
     }
 

@@ -11,6 +11,7 @@
 
 
 <LinearLayout
+    android:id="@+id/song_parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/song_list_bg_gray"
