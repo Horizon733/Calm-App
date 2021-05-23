@@ -1,5 +1,6 @@
 package com.example.calmapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -26,7 +27,7 @@ class HomeActivity : AppCompatActivity() {
             .into(homeBinding.profileImg)
         homeBinding.profileName.setText("Hiten Chawda")
 
-        supportFragmentManager.beginTransaction().add(homeBinding.homeContainer.id,HomeFragment(),"Home").commit()
+        supportFragmentManager.beginTransaction().replace(homeBinding.homeContainer.id,HomeFragment(),"Home").commit()
         homeBinding.moreFab.setOnClickListener {
             onMenuButtonClicked()
         }
@@ -37,7 +38,7 @@ class HomeActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction().replace(homeBinding.homeContainer.id,CalendarFragment(),"Calendar").commit()
         }
         homeBinding.settingsFab.setOnClickListener {
-//            supportFragmentManager.beginTransaction().replace(homeBinding.homeContainer.id,SettingsFragment(),"Settings").commit()
+            startActivity(Intent(applicationContext,SettingsActivity::class.java))
         }
     }
 
