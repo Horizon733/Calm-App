@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.calmapp.databinding.ActivityUserProfileBinding
@@ -63,8 +64,15 @@ class UserProfileActivity : AppCompatActivity() {
         myRef.addListenerForSingleValueEvent(object : EventListener,
             com.google.firebase.database.ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val userName: String = snapshot.child("username").value.toString()
-                userProfileBinding.usernameTv.text = userName
+                if(snapshot.child("age").exists()){
+                    val userName: String = snapshot.child("username").value.toString()
+                    userProfileBinding.usernameTv.text = userName
+                    val age: String = snapshot.child("age").value.toString()
+                    val dob: String = snapshot.child("name").value.toString()
+                    userProfileBinding.usernameEt.setText(userName)
+                    userProfileBinding.ageEt.setText(age)
+                    userProfileBinding.dobEt.setText(dob)
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {

@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="36dp"
-        android:text="May 13th 2021"
+        android:text="May 23 2021"
         android:textColor="@color/orange_200"
         android:textSize="36dp"
         app:layout_constraintStart_toStartOf="parent"
