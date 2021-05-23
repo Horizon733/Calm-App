@@ -20,7 +20,11 @@
         <activity android:name=".MainActivity">
 
         </activity>
-        <activity android:name=".SettingsActivity">
+        <activity android:name=".SettingsActivity"
+            android:parentActivityName=".HomeActivity"
+            android:label="Settings"
+
+            android:theme="@style/Theme.CalmApp">
 
         </activity>
     </application>
