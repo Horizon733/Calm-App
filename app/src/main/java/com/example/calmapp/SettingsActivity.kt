@@ -1,34 +1,28 @@
 package com.example.calmapp
 
 import android.app.*
-import android.content.Context
-import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.CompoundButton
-import android.widget.Switch
+import android.util.Patterns
+import android.widget.Button
 import android.widget.Toast
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
-import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
-import com.google.android.material.appbar.AppBarLayout
-import kotlin.coroutines.coroutineContext
+import com.google.firebase.auth.FirebaseAuth
+
+
 
 class SettingsActivity : AppCompatActivity() {
+
+    val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    //private lateinit var activitySettingsBinding:ActivitySettingsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar?>(R.id.settings_toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -43,7 +37,24 @@ class SettingsActivity : AppCompatActivity() {
         switch.setOnCheckedChangeListener { _, checked ->
             darkModeToggler(isNightTheme)
         }
+        findViewById<Button>(R.id.logout_button).setOnClickListener {
+            val user = auth.currentUser?.email.toString()
+            val greeting = "Logged out " + user.subSequence(0, pos(user, '@' )).toString() + " successfully !"
+            Toast.makeText(this, greeting , Toast.LENGTH_SHORT).show()
+            auth.signOut()
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
 
+    }
+    fun pos(str:String, char:Char): Int {
+        if(str.isEmpty())
+            return -1
+        for(i in 0 .. str.length){
+            if (str[i] == char)
+                return i
+        }
+        return -1
     }
 
 
