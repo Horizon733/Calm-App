@@ -2,26 +2,20 @@ package com.example.calmapp
 
 import android.app.*
 import android.content.Context
-import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.CompoundButton
-import android.widget.Switch
+import android.util.Patterns
+import android.widget.Button
 import android.widget.Toast
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
-import com.google.android.material.appbar.AppBarLayout
-import kotlin.coroutines.coroutineContext
+
 
 /**
  * A simple [Fragment] subclass.
@@ -29,12 +23,14 @@ import kotlin.coroutines.coroutineContext
  * create an instance of this fragment.
  */
 class SettingsActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
     //private lateinit var activitySettingsBinding:ActivitySettingsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-
+        auth = Firebase.auth
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar?>(R.id.settings_toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -49,7 +45,28 @@ class SettingsActivity : AppCompatActivity() {
         switch.setOnCheckedChangeListener { _, checked ->
             darkModeToggler(isNightTheme)
         }
+        findViewById<Button>(R.id.logout_button).setOnClickListener {
+            val user = auth.currentUser.email.toString()
+            val greeting = "Logged out " + user.subSequence(0, pos(user, '@' )).toString() + " successfully !"
+            Toast.makeText(this, greeting , Toast.LENGTH_SHORT).show()
+            auth.signOut()
+            finish()
+            startActivity(Intent(this, HomeActivity::class.java))
 
+        }
+
+    }
+    fun isEmailInvalid(email: String) : Boolean{
+        return !Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+    fun pos(str:String, char:Char): Int {
+        if(str.isEmpty())
+            return -1
+        for(i in 0 .. str.length){
+            if (str[i] == char)
+                return i
+        }
+        return -1
     }
 
 
@@ -73,9 +90,43 @@ class SettingsActivity : AppCompatActivity() {
                 desc = "Dark Mode Enabled!"
             }
         }
-        finish()
-        startActivity(Intent(this, SettingsActivity::class.java))
-        Toast.makeText(this, desc, Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, desc, Toast.LENGTH_SHORT).show()
+
+
+        /* 646466464*/
+
+
+        val mBuilder = NotificationCompat.Builder(this, "notify_001")
+        val intent = Intent(this,SettingsActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
+
+        val bigText = NotificationCompat.BigTextStyle()
+        bigText.setBigContentTitle(desc)
+
+        mBuilder.setContentIntent(pendingIntent)
+        mBuilder.setSmallIcon(R.mipmap.ic_launcher_round)
+        mBuilder.setContentTitle("Calm App")
+        mBuilder.priority = Notification.PRIORITY_DEFAULT
+        mBuilder.setStyle(bigText)
+
+            val appOpsManager: AppOpsManager? = getSystemService(AppOpsManager::class.java)
+        val mNotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+
+// === Removed some obsoletes
+
+// === Removed some obsoletes
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channelId = "Your_channel_id"
+            val channel = NotificationChannel(
+                channelId,
+                "Channel human readable title",
+                NotificationManager.IMPORTANCE_HIGH
+            )
+            mNotificationManager.createNotificationChannel(channel)
+            mBuilder.setChannelId(channelId)
+        }
+
+        mNotificationManager.notify(0, mBuilder.build())
 
 
     }

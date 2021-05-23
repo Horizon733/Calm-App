@@ -12,4 +12,5 @@
     <string name="dark_mode">Dark Mode</string>
     <string name="sleep_reminder">Sleep Reminder</string>
     <string name="meditation_reminder">Meditation Reminder</string>
+    <string name="log_out">Log Out</string>
 </resources>
