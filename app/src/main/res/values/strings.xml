@@ -2,6 +2,26 @@
     <string name="app_name">Calm App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_msg">Welcome</string>
+    <string name="welcome_quote">Fell less stressed and more minful with meditation</string>
+    <string name="sign_up_title">Don\'t have an account?</string>
+    <string name="signUp">Sign Up</string>
+    <string name="login">Log In</string>
+    <!--    <string name="signup_description">Sign up with one of the following options.</string>-->
+    <string name="signup_description">Sign up with:</string>
+    <string name="login_description">Log in with:</string>
+    <!--    <string name="login_description">Log in with one of the following options.</string>-->
+    <string name="have_account">Already have an account?</string>
+    <string name="email_hint">example@example.com</string>
+    <string name="password_hint">8+ characters, 1 capital</string>
+    <string name="sign_up_button">Create account</string>
+
+    <string name="sign_up_username_input_hint">Username</string>
+    <string name="sign_up_email_input_hint">Email</string>
+    <string name="sign_up_password_input_hint">Password</string>
+    <string name="meditation">meditation</string>
+    <string name="sleep">sleep</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="greeting_good_morning">Good Morning</string>
     <string name="greeting_quote">We wish you have a good day</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -12,4 +32,11 @@
     <string name="dark_mode">Dark Mode</string>
     <string name="sleep_reminder">Sleep Reminder</string>
     <string name="meditation_reminder">Meditation Reminder</string>
+    <string name="username">username</string>
+    <string name="name">Name</string>
+    <string name="age">age</string>
+    <string name="dob">Date of Birth</string>
+    <string name="save">Save</string>
+    <string name="close">Close and Reset</string>
+    <string name="log_out">log out</string>
 </resources>

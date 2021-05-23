@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/calender_bottom_sheet_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_sheet_background"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="36dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <TextView
+        android:id="@+id/cal_bs_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
+        android:text="May 23 2021"
+        android:textColor="@color/orange_200"
+        android:textSize="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/bs_sleep_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/sleep_indicator_background"
+        android:gravity="center_vertical"
+        android:paddingLeft="28dp"
+        android:text="@string/sleep"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/cal_bs_date"
+        app:layout_constraintTop_toBottomOf="@+id/cal_bs_date" />
+
+    <TextView
+        android:id="@+id/bs_meditation_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/meditation_indicator_background"
+        android:gravity="center_vertical"
+        android:paddingLeft="28dp"
+        android:text="@string/meditation"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bs_sleep_indicator"
+        app:layout_constraintStart_toEndOf="@+id/bs_sleep_indicator"
+        app:layout_constraintTop_toTopOf="@+id/bs_sleep_indicator"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <!--<ImageView
+        android:id="@+id/bs_sleep_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/sleep_indicator_background"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="98dp" />
+
+    <ImageView
+        android:id="@+id/bs_meditation_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/meditation_indicator_background"
+        tools:layout_editor_absoluteX="176dp"
+        tools:layout_editor_absoluteY="98dp" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

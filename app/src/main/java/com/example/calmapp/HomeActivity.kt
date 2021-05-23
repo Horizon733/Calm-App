@@ -59,6 +59,10 @@ class HomeActivity : AppCompatActivity() {
         homeBinding.settingsFab.setOnClickListener {
             startActivity(Intent(applicationContext,SettingsActivity::class.java))
         }
+        homeBinding.toolbarHome.setOnClickListener {
+            val profileIntent = Intent(this,UserProfileActivity::class.java)
+            startActivity(profileIntent)
+        }
         getNotification()?.let { scheduleNotification(it) }
     }
 
