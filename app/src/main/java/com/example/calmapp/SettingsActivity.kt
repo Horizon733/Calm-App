@@ -23,13 +23,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.AppBarLayout
 import kotlin.coroutines.coroutineContext
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SettingsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SettingsActivity : AppCompatActivity() {
-    //private lateinit var activitySettingsBinding:ActivitySettingsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,9 +49,7 @@ class SettingsActivity : AppCompatActivity() {
 
 
     fun darkModeToggler(isNightTheme: Int){
-            val desc: String;
-
-
+        val desc: String;
         when (isNightTheme) {
 
             Configuration.UI_MODE_NIGHT_YES -> {
@@ -73,8 +65,6 @@ class SettingsActivity : AppCompatActivity() {
                 desc = "Dark Mode Enabled!"
             }
         }
-        finish()
-        startActivity(Intent(this, SettingsActivity::class.java))
         Toast.makeText(this, desc, Toast.LENGTH_SHORT).show()
 
 
