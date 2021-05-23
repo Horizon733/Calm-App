@@ -1,6 +1,8 @@
 package com.example.calmapp
 
 import android.app.*
+import android.content.Context
+import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
@@ -74,8 +76,6 @@ class SettingsActivity : AppCompatActivity() {
 
     fun darkModeToggler(isNightTheme: Int){
             val desc: String;
-
-
         when (isNightTheme) {
 
             Configuration.UI_MODE_NIGHT_YES -> {
@@ -91,43 +91,7 @@ class SettingsActivity : AppCompatActivity() {
                 desc = "Dark Mode Enabled!"
             }
         }
-        //Toast.makeText(this, desc, Toast.LENGTH_SHORT).show()
-
-
-        /* 646466464*/
-
-
-        val mBuilder = NotificationCompat.Builder(this, "notify_001")
-        val intent = Intent(this,SettingsActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
-
-        val bigText = NotificationCompat.BigTextStyle()
-        bigText.setBigContentTitle(desc)
-
-        mBuilder.setContentIntent(pendingIntent)
-        mBuilder.setSmallIcon(R.mipmap.ic_launcher_round)
-        mBuilder.setContentTitle("Calm App")
-        mBuilder.priority = Notification.PRIORITY_DEFAULT
-        mBuilder.setStyle(bigText)
-
-            val appOpsManager: AppOpsManager? = getSystemService(AppOpsManager::class.java)
-        val mNotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-
-// === Removed some obsoletes
-
-// === Removed some obsoletes
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channelId = "Your_channel_id"
-            val channel = NotificationChannel(
-                channelId,
-                "Channel human readable title",
-                NotificationManager.IMPORTANCE_HIGH
-            )
-            mNotificationManager.createNotificationChannel(channel)
-            mBuilder.setChannelId(channelId)
-        }
-
-        mNotificationManager.notify(0, mBuilder.build())
+        Toast.makeText(this, desc, Toast.LENGTH_SHORT).show()
 
 
     }
